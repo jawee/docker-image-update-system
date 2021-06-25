@@ -1,19 +1,18 @@
-import { getConnection } from "typeorm";
+import { getConnection, createConnection } from "typeorm";
 import { DockerImageRepository } from "./../repositories/docker-image-repository";
 
 export class DockerImageService {
   private dockerImageRepository: DockerImageRepository;
   constructor() {
-    this.dockerImageRepository = getConnection("").getCustomRepository(
-      DockerImageRepository
-    );
+    this.dockerImageRepository = getConnection(
+      "dockerimage"
+    ).getCustomRepository(DockerImageRepository);
   }
 
   public index = () => {
     return "Index From Service";
   };
 
-  //  public get_by_id = (id) => {
   public get = (id) => {
     return `Get ${id} From Service`;
   };

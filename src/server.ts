@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import dotenv from "dotenv";
+import { createConnection } from "typeorm";
 
 import { DockerImageController } from "./controllers/docker-image-controller";
 
@@ -22,7 +23,21 @@ export class Server {
     this.app.use(bodyParser.urlencoded({ extended: true }));
   }
 
-  public routes() {
+  public async routes() {
+    await createConnection({
+      name: "dockerimage",
+      type: "sqlite",
+      database: "database.sqlite",
+      synchronize: true,
+      logging: false,
+      entities: ["entities/**/*.ts"],
+      migrations: ["migration/**/*.ts"],
+      cli: {
+        entitiesDir: "entities",
+        migrationsDir: "migration",
+      },
+    });
+
     this.app.get("/", (req: Request, res: Response) => {
       res.send("Hello world");
     });
