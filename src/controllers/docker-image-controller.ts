@@ -1,31 +1,35 @@
 import { Router, Response, Request } from "express";
+import { DockerImageService } from "../services/docker-image-service";
 
 export class DockerImageController {
   public router: Router;
+  private dockerImageService: DockerImageService;
 
   constructor() {
     this.router = Router();
+    this.dockerImageService = new DockerImageService();
     this.routes();
   }
 
   public index = async (req: Request, res: Response) => {
-    res.send("Index");
+    res.send(this.dockerImageService.index());
   };
 
-  public get(req: Request, res: Response) {
-    res.send(`get ${req.params.id}`);
-  }
+  public get = async (req: Request, res: Response) => {
+    //    res.send(this.dockerImageService.get_by_id(req.params.id));
+    res.send(this.dockerImageService.get(req.params.id));
+  };
 
   public create(req: Request, res: Response) {
-    res.send("create");
+    res.send(this.dockerImageService.create());
   }
 
   public update(req: Request, res: Response) {
-    res.send("update");
+    res.send(this.dockerImageService.update());
   }
 
   public delete(req: Request, res: Response) {
-    res.send("delete");
+    res.send(this.dockerImageService.delete());
   }
 
   public routes() {
