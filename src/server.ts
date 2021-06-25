@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import dotenv from "dotenv";
@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import { DockerImageController } from "./controllers/docker-image-controller";
 
 export class Server {
-  private app: Express;
+  private app: express.Application;
   private dockerImageController: DockerImageController;
 
   constructor() {
