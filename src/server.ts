@@ -3,12 +3,16 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import dotenv from "dotenv";
 
-class Server {
+import { DockerImageController } from "./controllers/docker-image-controller";
+
+export class Server {
   private app: Express;
+  private dockerImageController: DockerImageController;
 
   constructor() {
     this.app = express();
     this.configuration();
+    this.dockerImageController = new DockerImageController();
     this.routes();
   }
 
@@ -22,12 +26,12 @@ class Server {
     this.app.get("/", (req: Request, res: Response) => {
       res.send("Hello world");
     });
+    this.app.use("/api/docker-images/", this.dockerImageController.router);
   }
 
   public start() {
     this.app.listen(this.app.get("port"), () => {
-      console.log(`Server is listening $(this.app.get('port')} port. `);
+      console.log(`Server is listening ${this.app.get("port")} port. `);
     });
   }
 }
-export default Server;
