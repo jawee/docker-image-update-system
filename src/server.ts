@@ -13,7 +13,6 @@ export class Server {
   constructor() {
     this.app = express();
     this.configuration();
-    this.dockerImageController = new DockerImageController();
     this.routes();
   }
 
@@ -24,19 +23,11 @@ export class Server {
   }
 
   public async routes() {
-    await createConnection({
-      name: "dockerimage",
-      type: "sqlite",
-      database: "database.sqlite",
-      synchronize: true,
-      logging: false,
-      entities: ["entities/**/*.ts"],
-      migrations: ["migration/**/*.ts"],
-      cli: {
-        entitiesDir: "entities",
-        migrationsDir: "migration",
-      },
-    });
+    console.log("Creating connection");
+    await createConnection();
+    console.log("Connection should be created");
+
+    this.dockerImageController = new DockerImageController();
 
     this.app.get("/", (req: Request, res: Response) => {
       res.send("Hello world");

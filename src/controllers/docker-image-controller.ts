@@ -12,12 +12,14 @@ export class DockerImageController {
   }
 
   public index = async (req: Request, res: Response) => {
-    res.send(this.dockerImageService.index());
+    const result = await this.dockerImageService.index();
+    return res.send(result).json();
   };
 
   public get = async (req: Request, res: Response) => {
-    //    res.send(this.dockerImageService.get_by_id(req.params.id));
-    res.send(this.dockerImageService.get(req.params.id));
+    var id: number = +req.params.id;
+    const result = await this.dockerImageService.get(id);
+    return res.send(result).json();
   };
 
   public create(req: Request, res: Response) {

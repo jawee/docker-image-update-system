@@ -1,10 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, Column } from "typeorm";
+import { BaseEntity } from "./BaseEntity";
 
-@Entity()
-export class DockerImage {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+@Entity("docker_images")
+export class DockerImage extends BaseEntity {
   @Column()
   name: string;
 
@@ -16,4 +14,7 @@ export class DockerImage {
 
   @Column()
   repository: string;
+
+  @Column({ type: "datetime" })
+  image_last_updated: string;
 }
