@@ -1,10 +1,21 @@
 import express, { Request, Response } from "express";
-import bodyParser from "body-parser";
-import helmet from "helmet";
+import morgan, { StreamOptions } from "morgan";
 import dotenv from "dotenv";
 import { createConnection } from "typeorm";
 
 import { DockerImageController } from "./controllers/docker-image-controller";
+
+const stream: StreamOptions = {
+  // Use the http severity
+  write: (message) => console.log(message),
+};
+
+const skip = () => {
+  const env = process.env.NODE_ENV || "development";
+  return env !== "development";
+};
+
+//const morganMiddleware = morgan({ stream, skip });
 
 export class Server {
   private app: express.Application;
@@ -18,14 +29,15 @@ export class Server {
 
   public configuration() {
     this.app.set("port", process.env.PORT || 3000);
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
+    //   this.app.use(morganMiddleware);
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
   }
 
   public async routes() {
-    console.log("Creating connection");
+    //    console.log("Creating connection");
     await createConnection();
-    console.log("Connection should be created");
+    //   console.log("Connection should be created");
 
     this.dockerImageController = new DockerImageController();
 
@@ -37,7 +49,7 @@ export class Server {
 
   public start() {
     this.app.listen(this.app.get("port"), () => {
-      console.log(`Server is listening ${this.app.get("port")} port. `);
+      console.log(`Server is listening on port ${this.app.get("port")}. `);
     });
   }
 }

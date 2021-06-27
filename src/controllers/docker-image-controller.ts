@@ -1,5 +1,6 @@
 import { Router, Response, Request } from "express";
 import { DockerImageService } from "../services/docker-image-service";
+import { DockerImage } from "../entities/DockerImage";
 
 export class DockerImageController {
   public router: Router;
@@ -13,18 +14,27 @@ export class DockerImageController {
 
   public index = async (req: Request, res: Response) => {
     const result = await this.dockerImageService.index();
-    return res.send(result).json();
+    return res.send(result);
   };
 
   public get = async (req: Request, res: Response) => {
     var id: number = +req.params.id;
     const result = await this.dockerImageService.get(id);
-    return res.send(result).json();
+    return res.send(result);
   };
 
-  public create(req: Request, res: Response) {
-    res.send(this.dockerImageService.create());
-  }
+  public create = async (req: Request, res: Response) => {
+    console.log(req["body"]);
+    const dockerImage: DockerImage = req["body"] as DockerImage;
+    if (dockerImage === undefined) {
+      return res.sendStatus(400);
+    }
+    console.log(dockerImage);
+    const newDockerImage: DockerImage = await this.dockerImageService.create(
+      dockerImage
+    );
+    res.send(newDockerImage);
+  };
 
   public update(req: Request, res: Response) {
     res.send(this.dockerImageService.update());
