@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import morgan, { StreamOptions } from "morgan";
 import dotenv from "dotenv";
+import cors from "cors";
 import { createConnection } from "typeorm";
 
 import { DockerImageController } from "./controllers/docker-image-controller";
@@ -29,6 +30,7 @@ export class Server {
 
   public configuration() {
     this.app.set("port", process.env.PORT || 3000);
+    this.app.use(cors());
     //   this.app.use(morganMiddleware);
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
