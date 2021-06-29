@@ -11,9 +11,26 @@ export type DockerImage = {
   repository: string;
   image_last_updated: Date;
 };
+export type DockerImagesProps = {
+  dockerImages: DockerImage[] | void;
+};
 
-const DockerImages = (images: DockerImage[]) => {
-  console.log(images);
-  return <h2>Test</h2>;
+const DockerImages: React.FC<DockerImagesProps> = ({
+  dockerImages,
+}: DockerImagesProps) => {
+  console.log(dockerImages);
+  if (dockerImages === undefined) {
+    return <div>Loading</div>;
+  }
+  return (
+    <ul>
+      {dockerImages.map((d) => (
+        <li key={d.id}>
+          {d.id}
+          {d.name}
+        </li>
+      ))}
+    </ul>
+  );
 };
 export default DockerImages;
