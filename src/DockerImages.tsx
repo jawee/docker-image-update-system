@@ -18,6 +18,7 @@ export type DockerImagesProps = {
 
 const DockerImages: React.FC = () => {
   const [images, setImages] = React.useState<Partial<DockerImagesProps>>({});
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   useEffect(() => {
     const service = new DockerImageService();
@@ -26,10 +27,14 @@ const DockerImages: React.FC = () => {
       const resObj: DockerImagesProps = { dockerImages: res };
       console.log("Setting images", resObj);
       setImages(resObj);
+      setLoading(false);
     };
     getDockerImages();
   }, []);
 
+  if (loading) {
+    return <div>Loading</div>;
+  }
   if (images === undefined || images.dockerImages === undefined) {
     return <h1>images or dockerImages undefined</h1>;
   }
