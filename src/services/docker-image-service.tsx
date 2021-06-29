@@ -8,10 +8,8 @@ export class DockerImageService {
       })
       .then((json) => {
         var results = json; // as DockerImage[];
-        //console.log(results);
         return results;
       });
-    //    console.log(result);
     return result;
   };
 }

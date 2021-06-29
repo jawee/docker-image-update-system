@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { DockerImageService } from "./services/docker-image-service";
 
 export type DockerImage = {
@@ -17,10 +17,10 @@ export type DockerImagesProps = {
 };
 
 const DockerImages: React.FC = () => {
-  const service = new DockerImageService();
   const [images, setImages] = React.useState<Partial<DockerImagesProps>>({});
 
   useEffect(() => {
+    const service = new DockerImageService();
     const getDockerImages = async () => {
       const res = await service.getAllImages();
       const resObj: DockerImagesProps = { dockerImages: res };
@@ -30,12 +30,8 @@ const DockerImages: React.FC = () => {
     getDockerImages();
   }, []);
 
-  if (images === undefined) {
-    // || images.dockerImages === undefined) {
-    return <h1>images undefined</h1>;
-  }
-  if (images.dockerImages === undefined) {
-    return <h1>dockerImages undefined</h1>;
+  if (images === undefined || images.dockerImages === undefined) {
+    return <h1>images or dockerImages undefined</h1>;
   }
   return (
     <ul>
