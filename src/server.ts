@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import morgan, { StreamOptions } from "morgan";
-import dotenv from "dotenv";
+//import dotenv from "dotenv";
 import cors from "cors";
 import { createConnection } from "typeorm";
 
@@ -16,7 +16,10 @@ const skip = () => {
   return env !== "development";
 };
 
-//const morganMiddleware = morgan({ stream, skip });
+const morganMiddleware = morgan(
+  ":method :url :status :res[content-length] - :response-time ms",
+  { stream, skip }
+);
 
 export class Server {
   private app: express.Application;
@@ -31,7 +34,7 @@ export class Server {
   public configuration() {
     this.app.set("port", process.env.PORT || 3000);
     this.app.use(cors());
-    //   this.app.use(morganMiddleware);
+    this.app.use(morganMiddleware);
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   }
