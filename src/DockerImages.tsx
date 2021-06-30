@@ -17,16 +17,15 @@ export type DockerImagesProps = {
 };
 
 const DockerImages: React.FC = () => {
-  const [images, setImages] = React.useState<Partial<DockerImagesProps>>({});
+  const [dockerImageProps, setDockerImageProps] = React.useState<Partial<DockerImagesProps>>({});
   const [loading, setLoading] = React.useState<boolean>(true);
 
   useEffect(() => {
     const service = new DockerImageService();
     const getDockerImages = async () => {
       const res = await service.getAllImages();
-      const resObj: DockerImagesProps = { dockerImages: res };
-      console.log("Setting images", resObj);
-      setImages(resObj);
+      const props: DockerImagesProps = { dockerImages: res };
+      setDockerImageProps(props);
       setLoading(false);
     };
     getDockerImages();
@@ -35,12 +34,12 @@ const DockerImages: React.FC = () => {
   if (loading) {
     return <div>Loading</div>;
   }
-  if (images === undefined || images.dockerImages === undefined) {
+  if (dockerImageProps === undefined || dockerImageProps.dockerImages === undefined) {
     return <h1>images or dockerImages undefined</h1>;
   }
   return (
     <ul>
-      {images.dockerImages.map((d) => (
+      {dockerImageProps.dockerImages.map((d) => (
         <li key={d.id}>
           {d.id}
           {d.name}
