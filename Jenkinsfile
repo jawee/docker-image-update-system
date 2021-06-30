@@ -10,7 +10,9 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building'
-        sh 'cd src'
+        echo 'This is start $(pwd)'
+        sh 'cd ./src'
+        echo 'Changed to dir $(pwd)'
         sh 'npm install'
         sh 'npm run build'
       }
