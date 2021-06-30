@@ -1,3 +1,5 @@
+properties([pipelineTriggers([githubPush()])])
+
 pipeline {
   agent any
   stages {
@@ -18,6 +20,11 @@ pipeline {
           npm run build
         '''
       }
+    }
+  }
+  post {
+    always {
+      deleteDir()
     }
   }
 }
