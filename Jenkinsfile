@@ -18,6 +18,7 @@ pipeline {
           echo "Changed to dir $(pwd)"
           npm install
           npm run build
+          echo "Done building"
         '''
       }
     }
