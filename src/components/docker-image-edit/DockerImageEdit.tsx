@@ -15,15 +15,16 @@ const DockerImageEdit = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
+    const service: DockerImageService = new DockerImageService();
+    const updateDockerImage = async () => {
+      const res = await service.updateDockerImage(+id, dockerImage);
+      setDockerImage(res);
+      setLoading(false);
+    };
     //TODO: Extract to mapper method or something
-    const imageToBeUpdated: DockerImage = {} as DockerImage;
-    imageToBeUpdated.image_last_updated = dockerImage.image_last_updated;
-    imageToBeUpdated.name = dockerImage.name;
-    imageToBeUpdated.repository = dockerImage.repository;
-    imageToBeUpdated.status = dockerImage.status;
-    imageToBeUpdated.tag = dockerImage.tag;
-    imageToBeUpdated.user = dockerImage.user;
-    console.log("dockerImage to be submitted", imageToBeUpdated);
+    console.log("dockerImage to be submitted", dockerImage);
+    updateDockerImage();
   };
 
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
