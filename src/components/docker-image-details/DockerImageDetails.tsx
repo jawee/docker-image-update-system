@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import DockerImage from "./../../models/DockerImage";
 import DockerImageService from "./services/docker-image-service";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 type DockerImageDetailsParams = {
   id: string;
@@ -31,6 +31,7 @@ const DockerImageDetails = () => {
     <div>
       {dockerImage.id}
       {dockerImage.name}
+      <Link to={`/dockerimage/${dockerImage.id}/edit`}>Edit</Link>
     </div>
   );
 };
