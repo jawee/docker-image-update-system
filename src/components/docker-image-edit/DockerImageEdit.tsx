@@ -15,16 +15,20 @@ const DockerImageEdit = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(event);
+    console.log("dockerImage to be updated", dockerImage);
     console.log("Submit");
   };
 
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
     let key = event.currentTarget.name;
-    let value = event.currentTarget.value;
+    let value =
+      event.currentTarget.name === "status"
+        ? event.currentTarget.checked
+          ? 1
+          : 0
+        : event.currentTarget.value;
     let currentDockerImage = dockerImage;
     currentDockerImage[key] = value;
-    console.log("pre setDockerImage", currentDockerImage);
     setDockerImage({ ...dockerImage, [key]: value });
     console.log("post setDockerImage", dockerImage);
   };
@@ -63,7 +67,33 @@ const DockerImageEdit = () => {
           onChange={onChange}
         />
       </label>
-
+      <label htmlFor="user">
+        User
+        <input
+          name="user"
+          type="text"
+          value={dockerImage.user}
+          onChange={onChange}
+        />
+      </label>
+      <label htmlFor="tag">
+        Tag
+        <input
+          name="tag"
+          type="text"
+          value={dockerImage.tag}
+          onChange={onChange}
+        />
+      </label>
+      <label htmlFor="status">
+        Active
+        <input
+          type="checkbox"
+          name="status"
+          onChange={onChange}
+          checked={dockerImage.status === 1}
+        />
+      </label>
       <input type="submit" value="Save" />
     </form>
   );
