@@ -42,7 +42,7 @@ pipeline {
     }
     failure {
       echo 'Failure, notifying discord'
-      discordSend description: "Jenkins Pipeline Build", footer: "", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK 
+      discordSend description: "Jenkins Pipeline Build Failure", footer: "", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK 
     }
   }
 }
