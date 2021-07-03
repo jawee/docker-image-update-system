@@ -32,8 +32,16 @@ export class DockerImageService {
     return newDockerImage;
   };
 
-  public update = () => {
-    return "Update From Service";
+  public update = async (id: number, dockerImage: DockerImage) => {
+    dockerImage.id = id;
+    dockerImage.modified_on = new Date().toUTCString();
+
+    // TODO: Doesn't return updated image, so for now I get the updated image after update.
+    await this.dockerImageRepository.update(id, dockerImage);
+
+    const updatedDockerImage = await this.dockerImageRepository.findOne(id);
+
+    return updatedDockerImage;
   };
 
   public delete = () => {

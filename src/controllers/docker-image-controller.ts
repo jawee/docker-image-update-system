@@ -36,9 +36,17 @@ export class DockerImageController {
     res.send(newDockerImage);
   };
 
-  public update(req: Request, res: Response) {
-    res.send(this.dockerImageService.update());
-  }
+  public update = async (req: Request, res: Response) => {
+    console.log(req.params);
+    var id: number = +req.params.id;
+    const dockerImage: DockerImage = req["body"] as DockerImage;
+    var updatedDockerImage = await this.dockerImageService.update(
+      id,
+      dockerImage
+    );
+    console.log("Updated docker image", updatedDockerImage);
+    res.send(updatedDockerImage);
+  };
 
   public delete(req: Request, res: Response) {
     res.send(this.dockerImageService.delete());
