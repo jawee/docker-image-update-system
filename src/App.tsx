@@ -9,7 +9,7 @@ function AppRouter() {
       <Link to="/">Home</Link>
 
       <Route path="/" exact component={DockerImages} />
-      <Route path="/dockerimage/" component={DockerImageDetails} />
+      <Route path="/dockerimage/:id" component={DockerImageDetails} />
     </Router>
   );
 }
