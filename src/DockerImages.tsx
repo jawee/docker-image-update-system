@@ -18,7 +18,7 @@ export type DockerImagesProps = {
 
 const DockerImages = () => {
   const [dockerImageProps, setDockerImageProps] =
-    React.useState<DockerImagesProps>({} as DockerImagesProps);
+    React.useState<DockerImagesProps>({});
   const [loading, setLoading] = React.useState<boolean>(true);
 
   useEffect(() => {
