@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import morgan, { StreamOptions } from "morgan";
 //import dotenv from "dotenv";
-//import cors from "cors";
+import cors from "cors";
 import { createConnection } from "typeorm";
 
 import { DockerImageController } from "./controllers/docker-image-controller";
