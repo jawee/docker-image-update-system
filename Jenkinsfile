@@ -25,8 +25,10 @@ pipeline {
           DISCORD_WEBHOOK = credentials('discord-webhook')
         }
         steps {
-          if ( currentBuild.currentResult == FAILURE ) {
-            discordSend description: "Jenkins Pipeline Build", footer: "", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK 
+          script {
+            if ( currentBuild.currentResult == FAILURE ) {
+              discordSend description: "Jenkins Pipeline Build", footer: "", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK 
+            }
           }
         }
       }
