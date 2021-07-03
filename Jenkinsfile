@@ -21,8 +21,11 @@ pipeline {
     }
 
     stage('Notify') {
+      environment {
+        DISCORD_WEBHOOK = credentials('discord-webhook')
+      }
       steps {
-        discordSend description: "Jenkins Pipeline Build", footer: "Footer Text", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: credentials('discord-webhook')
+        discordSend description: "Jenkins Pipeline Build", footer: "Footer Text", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK 
       }
     }
   }
