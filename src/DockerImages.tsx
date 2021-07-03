@@ -16,6 +16,21 @@ export type DockerImagesProps = {
   dockerImages: DockerImage[] | void;
 };
 
+type DockerImageLineProps = {
+  dockerImage: DockerImage;
+};
+
+const DockerImageLine = ({ dockerImage }: DockerImageLineProps) => {
+  return (
+    <tr>
+      <td>{dockerImage.name}</td>
+      <td>{dockerImage.tag}</td>
+      <td>{dockerImage.image_last_updated}</td>
+      <td>{dockerImage.status}</td>
+    </tr>
+  );
+};
+
 const DockerImages = () => {
   const [dockerImageProps, setDockerImageProps] =
     React.useState<DockerImagesProps>({} as DockerImagesProps);
@@ -42,7 +57,25 @@ const DockerImages = () => {
     return <h1>images or dockerImages undefined</h1>;
   }
   return (
-    <ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Tag</th>
+          <th>Last Updated</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {dockerImageProps.dockerImages.map((d) => (
+          <DockerImageLine dockerImage={d} />
+        ))}
+      </tbody>
+    </table>
+  );
+};
+export default DockerImages;
+/*<ul>
       {dockerImageProps.dockerImages.map((d) => (
         <li key={d.id}>
           {d.id}
@@ -50,6 +83,4 @@ const DockerImages = () => {
         </li>
       ))}
     </ul>
-  );
-};
-export default DockerImages;
+ */
