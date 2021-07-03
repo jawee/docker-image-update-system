@@ -1,17 +1,8 @@
 import React, { useEffect } from "react";
 import { DockerImageService } from "./services/docker-image-service";
+import { Link } from "react-router-dom";
+import DockerImage from "./../../models/DockerImage";
 
-export type DockerImage = {
-  id: number;
-  status: number;
-  created_on: Date;
-  modified_on: Date;
-  name: string;
-  user: string;
-  tag: string;
-  repository: string;
-  image_last_updated: Date;
-};
 export type DockerImagesProps = {
   dockerImages: DockerImage[] | void;
 };
@@ -27,6 +18,9 @@ const DockerImageLine = ({ dockerImage }: DockerImageLineProps) => {
       <td>{dockerImage.tag}</td>
       <td>{dockerImage.image_last_updated}</td>
       <td>{dockerImage.status}</td>
+      <td>
+        <Link to={`/dockerimage/${dockerImage.id}`}>Details</Link>
+      </td>
     </tr>
   );
 };
