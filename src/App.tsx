@@ -1,5 +1,5 @@
 import React from "react";
-import DockerImages from "./DockerImages";
+import DockerImages from "./components/docker-images-component/DockerImages";
 
 function App() {
   return (
