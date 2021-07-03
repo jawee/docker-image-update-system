@@ -8,6 +8,7 @@ type DockerImage = {
   tag: string;
   repository: string;
   image_last_updated: Date;
+  [key: string]: any;
 };
 
 export default DockerImage;
