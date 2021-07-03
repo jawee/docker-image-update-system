@@ -33,11 +33,18 @@ export class DockerImageService {
   };
 
   public update = async (id: number, dockerImage: DockerImage) => {
-    dockerImage.id = id;
-    dockerImage.modified_on = new Date().toUTCString();
+    let newImage: DockerImage = {} as DockerImage;
+    newImage.name = dockerImage.name;
+    newImage.id = dockerImage.id;
+    newImage.image_last_updated = dockerImage.image_last_updated;
+    newImage.repository = dockerImage.repository;
+    newImage.tag = dockerImage.tag;
+    newImage.user = dockerImage.user;
+    newImage.status = dockerImage.status;
+    newImage.modified_on = new Date().toUTCString();
 
     // TODO: Doesn't return updated image, so for now I get the updated image after update.
-    await this.dockerImageRepository.update(id, dockerImage);
+    await this.dockerImageRepository.update(id, newImage);
 
     const updatedDockerImage = await this.dockerImageRepository.findOne(id);
 
