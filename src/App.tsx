@@ -1,6 +1,7 @@
 import React from "react";
 import DockerImages from "./components/docker-images-component/DockerImages";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import DockerImageDetails from "./components/docker-image-details/DockerImageDetails";
 
 function AppRouter() {
   return (
@@ -8,6 +9,7 @@ function AppRouter() {
       <Link to="/">Home</Link>
 
       <Route path="/" exact component={DockerImages} />
+      <Route path="/dockerimage/" component={DockerImageDetails} />
     </Router>
   );
 }
