@@ -53,11 +53,11 @@ const DockerImageDetails = () => {
         <DockerImageDetailsLine name="User" value={dockerImage.user} />
         <DockerImageDetailsLine
           name="Created on"
-          value={dockerImage.created_on}
+          value={new Date(dockerImage.created_on).toLocaleString("sv-SE")}
         />
         <DockerImageDetailsLine
           name="Modified on"
-          value={dockerImage.modified_on}
+          value={new Date(dockerImage.modified_on).toLocaleString("sv-SE")}
         />
         <DockerImageDetailsLine
           name="Repository"
@@ -69,7 +69,9 @@ const DockerImageDetails = () => {
         />
         <DockerImageDetailsLine
           name="Image last updated"
-          value={dockerImage.image_last_updated}
+          value={new Date(dockerImage.image_last_updated).toLocaleString(
+            "sv-SE"
+          )}
         />
         <li>
           <Link to={`/dockerimage/${dockerImage.id}/edit`}>Edit</Link>
