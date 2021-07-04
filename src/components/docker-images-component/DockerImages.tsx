@@ -62,19 +62,10 @@ const DockerImages = () => {
       </thead>
       <tbody>
         {dockerImageProps.dockerImages.map((d) => (
-          <DockerImageLine dockerImage={d} />
+          <DockerImageLine dockerImage={d} key={d.id} />
         ))}
       </tbody>
     </table>
   );
 };
 export default DockerImages;
-/*<ul>
-      {dockerImageProps.dockerImages.map((d) => (
-        <li key={d.id}>
-          {d.id}
-          {d.name}
-        </li>
-      ))}
-    </ul>
- */
