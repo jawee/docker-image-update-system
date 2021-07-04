@@ -9,7 +9,7 @@ type DockerImageDetailsParams = {
 
 type DockerImageDetailsLineParams = {
   name: string;
-  value: any;
+  value: string;
 };
 
 const DockerImageDetailsLine = ({
