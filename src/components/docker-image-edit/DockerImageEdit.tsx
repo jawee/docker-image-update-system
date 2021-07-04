@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import DockerImage from "./../../models/DockerImage";
 import DockerImageService from "./services/docker-image-service";
 
@@ -12,18 +12,19 @@ const DockerImageEdit = () => {
     {} as DockerImage
   );
   const [loading, setLoading] = React.useState<boolean>(true);
+  let history = useHistory();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
     const service: DockerImageService = new DockerImageService();
     const updateDockerImage = async () => {
-      const res = await service.updateDockerImage(+id, dockerImage);
-      setDockerImage(res);
-      setLoading(false);
+      await service.updateDockerImage(+id, dockerImage);
+      //  setDockerImage(res);
+      //  setLoading(false);
+      //  Redirect to details view
+      history.push("/dockerimage/" + dockerImage.id);
     };
-    //TODO: Extract to mapper method or something
-    console.log("dockerImage to be submitted", dockerImage);
     updateDockerImage();
   };
 
@@ -38,7 +39,6 @@ const DockerImageEdit = () => {
     let currentDockerImage = dockerImage;
     currentDockerImage[key] = value;
     setDockerImage({ ...dockerImage, [key]: value });
-    console.log("post setDockerImage", dockerImage);
   };
 
   let { id } = useParams<DockerImageEditParams>();
