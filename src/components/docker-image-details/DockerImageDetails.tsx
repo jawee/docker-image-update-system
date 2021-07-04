@@ -29,9 +29,49 @@ const DockerImageDetails = () => {
   }
   return (
     <div>
-      {dockerImage.id}
-      {dockerImage.name}
-      <Link to={`/dockerimage/${dockerImage.id}/edit`}>Edit</Link>
+      <ul>
+        <li>
+          <span className="title">Id</span>
+          {dockerImage.id}
+        </li>
+        <li>
+          <span className="title">Name</span>
+          {dockerImage.name}
+        </li>
+        <li>
+          <span className="title">Tag</span>
+          {dockerImage.tag}
+        </li>
+        <li>
+          <span className="title">User</span>
+          {dockerImage.user}
+        </li>
+        <li>
+          <span className="title">Created on</span>
+          {dockerImage.created_on}
+        </li>
+        <li>
+          <span className="title">Modified on</span>j{dockerImage.modified_on}
+        </li>
+        <li>
+          <span className="title">Repository</span>
+          {dockerImage.repository}
+        </li>
+        <li>
+          <span className="title">Status</span>
+          {dockerImage.status === 1 ? "Active" : "Inactive"}
+        </li>
+        <li>
+          <span className="title">Image last updated</span>
+          {dockerImage.image_last_updated}
+        </li>
+        <li>
+          <Link to={`/dockerimage/${dockerImage.id}/edit`}>Edit</Link>
+        </li>
+        <li>
+          <button>Delete</button>
+        </li>
+      </ul>
     </div>
   );
 };
