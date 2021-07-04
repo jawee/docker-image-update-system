@@ -7,6 +7,23 @@ type DockerImageDetailsParams = {
   id: string;
 };
 
+type DockerImageDetailsLineParams = {
+  name: string;
+  value: any;
+};
+
+const DockerImageDetailsLine = ({
+  name,
+  value,
+}: DockerImageDetailsLineParams) => {
+  return (
+    <li>
+      <span className="title">{name}:</span>
+      {value}
+    </li>
+  );
+};
+
 const DockerImageDetails = () => {
   const [dockerImage, setDockerImage] = React.useState<DockerImage>(
     {} as DockerImage
@@ -30,41 +47,30 @@ const DockerImageDetails = () => {
   return (
     <div>
       <ul>
-        <li>
-          <span className="title">Id</span>
-          {dockerImage.id}
-        </li>
-        <li>
-          <span className="title">Name</span>
-          {dockerImage.name}
-        </li>
-        <li>
-          <span className="title">Tag</span>
-          {dockerImage.tag}
-        </li>
-        <li>
-          <span className="title">User</span>
-          {dockerImage.user}
-        </li>
-        <li>
-          <span className="title">Created on</span>
-          {dockerImage.created_on}
-        </li>
-        <li>
-          <span className="title">Modified on</span>j{dockerImage.modified_on}
-        </li>
-        <li>
-          <span className="title">Repository</span>
-          {dockerImage.repository}
-        </li>
-        <li>
-          <span className="title">Status</span>
-          {dockerImage.status === 1 ? "Active" : "Inactive"}
-        </li>
-        <li>
-          <span className="title">Image last updated</span>
-          {dockerImage.image_last_updated}
-        </li>
+        <DockerImageDetailsLine name="Id" value={dockerImage.id.toString()} />
+        <DockerImageDetailsLine name="Name" value={dockerImage.name} />
+        <DockerImageDetailsLine name="Tag" value={dockerImage.tag} />
+        <DockerImageDetailsLine name="User" value={dockerImage.user} />
+        <DockerImageDetailsLine
+          name="Created on"
+          value={dockerImage.created_on}
+        />
+        <DockerImageDetailsLine
+          name="Modified on"
+          value={dockerImage.modified_on}
+        />
+        <DockerImageDetailsLine
+          name="Repository"
+          value={dockerImage.repository}
+        />
+        <DockerImageDetailsLine
+          name="Status"
+          value={dockerImage.status === 1 ? "Active" : "Inactive"}
+        />
+        <DockerImageDetailsLine
+          name="Image last updated"
+          value={dockerImage.image_last_updated}
+        />
         <li>
           <Link to={`/dockerimage/${dockerImage.id}/edit`}>Edit</Link>
         </li>
