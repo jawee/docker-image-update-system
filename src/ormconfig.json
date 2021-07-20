@@ -3,18 +3,19 @@
    "database": "database.sqlite",
    "synchronize": true,
    "logging": false,
+   "autoLoadEntities": true,
    "entities": [
-      "build/entities/**/*.js"
+      "entities/**/*.ts"
    ],
    "migrations": [
-      "build/migration/**/*.js"
+      "migration/**/*.ts"
    ],
    "subscribers": [
-      "build/subscriber/**/*.js"
+      "subscriber/**/*.ts"
    ],
    "cli": {
-      "entitiesDir": "build/entities",
-      "migrationsDir": "build/migration",
-      "subscribersDir": "build/subscriber"
+      "entitiesDir": "entities",
+      "migrationsDir": "migration",
+      "subscribersDir": "subscriber"
    }
 }
