@@ -40,10 +40,6 @@ export class Server {
   }
 
   public async routes() {
-    //    console.log("Creating connection");
-    await createConnection();
-    //   console.log("Connection should be created");
-
     this.dockerImageController = new DockerImageController();
 
     this.app.get("/", (req: Request, res: Response) => {
