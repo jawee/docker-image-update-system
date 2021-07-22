@@ -74,7 +74,7 @@ const DockerImageDetails = () => {
           )}
         />
         <li>
-          <Link to={`/dockerimage/${dockerImage.id}/edit`}>Edit</Link>
+          <Link to={`/dockerimage/details/${dockerImage.id}/edit`}>Edit</Link>
         </li>
         <li>
           <button>Delete</button>

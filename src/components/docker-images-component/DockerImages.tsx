@@ -19,7 +19,7 @@ const DockerImageLine = ({ dockerImage }: DockerImageLineProps) => {
       <td>{dockerImage.image_last_updated}</td>
       <td>{dockerImage.status}</td>
       <td>
-        <Link to={`/dockerimage/${dockerImage.id}`}>Details</Link>
+        <Link to={`/dockerimage/details/${dockerImage.id}`}>Details</Link>
       </td>
     </tr>
   );
