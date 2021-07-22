@@ -36,8 +36,6 @@ const DockerImageEdit = () => {
           ? 1
           : 0
         : event.currentTarget.value;
-    let currentDockerImage = dockerImage;
-    currentDockerImage[key] = value;
     setDockerImage({ ...dockerImage, [key]: value });
   };
 
