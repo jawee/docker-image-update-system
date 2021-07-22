@@ -20,8 +20,6 @@ const DockerImageEdit = () => {
     const service: DockerImageService = new DockerImageService();
     const updateDockerImage = async () => {
       await service.updateDockerImage(+id, dockerImage);
-      //  setDockerImage(res);
-      //  setLoading(false);
       //  Redirect to details view
       history.push("/dockerimage/details/" + dockerImage.id);
     };
