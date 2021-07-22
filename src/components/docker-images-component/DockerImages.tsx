@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { DockerImageService } from "./services/docker-image-service";
+import DockerImageService from "../../services/docker-image-service";
 import { Link } from "react-router-dom";
 import DockerImage from "./../../models/DockerImage";
 

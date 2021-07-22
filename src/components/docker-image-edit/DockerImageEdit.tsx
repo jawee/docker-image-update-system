@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import DockerImage from "./../../models/DockerImage";
-import DockerImageService from "./services/docker-image-service";
+import DockerImageService from "../../services/docker-image-service";
 
 type DockerImageEditParams = {
   id: string;
@@ -23,7 +23,7 @@ const DockerImageEdit = () => {
       //  setDockerImage(res);
       //  setLoading(false);
       //  Redirect to details view
-      history.push("/dockerimage/" + dockerImage.id);
+      history.push("/dockerimage/details/" + dockerImage.id);
     };
     updateDockerImage();
   };
