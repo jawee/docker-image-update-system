@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DockerImage from "./../../models/DockerImage";
 
 const DockerImageCreate = () => {
