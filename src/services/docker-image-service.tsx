@@ -47,6 +47,17 @@ class DockerImageService {
 
     return result;
   };
+
+  public deleteDockerImage = async (id: number) => {
+    const result = await fetch(
+      "http://localhost:3000/api/docker-images/" + id,
+      { method: "DELETE" }
+    )
+      .then((res) => res.json())
+      .then((json) => json);
+
+    return result;
+  };
 }
 
 export default DockerImageService;

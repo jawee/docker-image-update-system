@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import DockerImage from "./../../models/DockerImage";
 import DockerImageService from "../../services/docker-image-service";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 type DockerImageDetailsParams = {
   id: string;
@@ -28,7 +28,19 @@ const DockerImageDetails = () => {
   const [dockerImage, setDockerImage] = React.useState<DockerImage>(
     {} as DockerImage
   );
+
+  let history = useHistory();
+
   const [loading, setLoading] = React.useState<boolean>(true);
+
+  const handleDelete = () => {
+    const service: DockerImageService = new DockerImageService();
+    const deleteDockerImage = async () => {
+      await service.deleteDockerImage(dockerImage.id);
+      history.push("/");
+    };
+    deleteDockerImage();
+  };
 
   let { id } = useParams<DockerImageDetailsParams>();
   useEffect(() => {
@@ -77,7 +89,7 @@ const DockerImageDetails = () => {
           <Link to={`/dockerimage/details/${dockerImage.id}/edit`}>Edit</Link>
         </li>
         <li>
-          <button>Delete</button>
+          <button onClick={handleDelete}>Delete</button>
         </li>
       </ul>
     </div>
