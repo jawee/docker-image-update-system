@@ -3,7 +3,7 @@ import { Server } from "./server";
 import { createConnection } from "typeorm";
 
 createConnection()
-  .then(async (connection) => {
+  .then(async () => {
     const server = new Server();
     server.start();
   })
