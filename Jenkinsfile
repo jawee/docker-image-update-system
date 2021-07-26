@@ -15,7 +15,7 @@ pipeline {
           }
           steps {
             catchError {
-               echo "Building"
+               echo "Building api"
                 cd ./src
                 npm install
                 npm run build
@@ -30,7 +30,12 @@ pipeline {
           }
           steps {
             catchError {
-              load "fe/Jenkinsfile"
+              sh script:'''
+                echo "Building fe"
+                npm install
+                npm run build
+                echo "Done"
+              '''
             }
           }
         }
