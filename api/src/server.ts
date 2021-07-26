@@ -41,7 +41,7 @@ export class Server {
   public async routes() {
     this.dockerImageController = new DockerImageController();
 
-    this.app.get("/", (req: Request, res: Response) => {
+    this.app.get("/", (_: Request, res: Response) => {
       res.send("Hello world");
     });
     this.app.use("/api/docker-images/", this.dockerImageController.router);

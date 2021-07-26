@@ -11,14 +11,11 @@ export class DockerImageService {
   }
 
   public index = async () => {
-    //    console.log("Getting all docker images");
     const dockerImages = await this.dockerImageRepository.find();
-    //   console.log("Returning from service", dockerImages);
     return dockerImages;
   };
 
   public get = async (id: number) => {
-    //console.log(`Getting docker image with id '${id}'`);
     const dockerImage = await this.dockerImageRepository.findOne(id);
     return dockerImage;
   };
@@ -51,7 +48,8 @@ export class DockerImageService {
     return updatedDockerImage;
   };
 
-  public delete = () => {
-    return "Delete From Service";
+  public delete = async (id: number) => {
+    const result = await this.dockerImageRepository.delete(id);
+    return result;
   };
 }

@@ -12,13 +12,13 @@ export class DockerImageController {
     this.routes();
   }
 
-  public index = async (req: Request, res: Response) => {
+  public index = async (_: Request, res: Response) => {
     const result = await this.dockerImageService.index();
     return res.send(result);
   };
 
   public get = async (req: Request, res: Response) => {
-    var id: number = +req.params.id;
+    const id: number = +req.params.id;
     const result = await this.dockerImageService.get(id);
     return res.send(result);
   };
@@ -38,9 +38,9 @@ export class DockerImageController {
 
   public update = async (req: Request, res: Response) => {
     console.log(req.params);
-    var id: number = +req.params.id;
+    const id: number = +req.params.id;
     const dockerImage: DockerImage = req["body"] as DockerImage;
-    var updatedDockerImage = await this.dockerImageService.update(
+    const updatedDockerImage = await this.dockerImageService.update(
       id,
       dockerImage
     );
@@ -48,8 +48,9 @@ export class DockerImageController {
     res.send(updatedDockerImage);
   };
 
-  public delete(req: Request, res: Response) {
-    res.send(this.dockerImageService.delete());
+  public delete = async (req: Request, res: Response) => {
+    const result = this.dockerImageService.delete(+req.params.id);
+    res.send(result);
   }
 
   public routes() {
