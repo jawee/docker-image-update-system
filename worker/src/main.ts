@@ -1,4 +1,4 @@
-console.log("Starting");
+console.log("Starting worker");
 
 setInterval(() => {
   console.log("Running probably");
