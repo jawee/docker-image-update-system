@@ -10,12 +10,13 @@ pipeline {
       failFast false
       parallel {
         stage('api ci') {
-
           when {
             changeset "api/**"
           }
           steps {
-            load "api/Jenkinsfile"
+            catchError {
+              load "api/Jenkinsfile"
+            }
           }
         }
         stage('fe ci') {
@@ -23,7 +24,9 @@ pipeline {
             changeset "fe/**"
           }
           steps {
-            load "fe/Jenkinsfile"
+            catchError {
+              load "fe/Jenkinsfile"
+            }
           }
         }
       }
