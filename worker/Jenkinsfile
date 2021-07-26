@@ -1,6 +1,6 @@
 sh script:'''
     echo "Building"
-    cd ./worker
+    cd ./worker/src
     npm install
     npm run build
     echo "Done building"
