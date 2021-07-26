@@ -1,0 +1,30 @@
+{
+  "path": "/Projects/docker-image-update-system-monorepo/",
+  "name": "dius",
+  "windows": [
+    {
+      "name": "BE-vim",
+      "command": "cd api && vim ."
+    },
+    {
+      "name": "BE-run",
+      "command": "cd api/src && npm run start"
+    },
+    {
+      "name": "FE-vim",
+      "command": "cd frontend && vim ."
+    },
+    {
+      "name": "FE-run",
+      "command": "cd frontend && npm run start"
+    },
+    {
+      "name": "WRK-vim",
+      "command": "cd worker && vim ."
+    },
+    {
+      "name": "WRK-run",
+      "command": "cd worker"
+    }
+  ]
+}
