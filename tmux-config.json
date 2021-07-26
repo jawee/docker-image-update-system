@@ -12,11 +12,11 @@
     },
     {
       "name": "FE-vim",
-      "command": "cd frontend && vim ."
+      "command": "cd fe && vim ."
     },
     {
       "name": "FE-run",
-      "command": "cd frontend && npm run start"
+      "command": "cd fe && npm run start"
     },
     {
       "name": "WRK-vim",
