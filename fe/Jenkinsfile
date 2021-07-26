@@ -1,5 +1,6 @@
 sh script:'''
     echo "Building"
+    cd ./fe
     npm install
     npm run build
     echo "Done"
