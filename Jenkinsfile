@@ -31,7 +31,7 @@ pipeline {
         }
         stage('worker ci') {
           when {
-            changeset "fe/**"
+            changeset "worker/**"
           }
           steps {
             catchError {
