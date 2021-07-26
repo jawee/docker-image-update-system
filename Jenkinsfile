@@ -29,6 +29,16 @@ pipeline {
             }
           }
         }
+        stage('worker ci') {
+          when {
+            changeset "fe/**"
+          }
+          steps {
+            catchError {
+              load "worker/Jenkinsfile"
+            }
+          }
+        }
       }
     }
   }
