@@ -1,3 +1,5 @@
+import { DockerHubClient } from "./clients/dockerhub-client";
+
 console.log("Starting worker");
 
 setInterval(() => {
