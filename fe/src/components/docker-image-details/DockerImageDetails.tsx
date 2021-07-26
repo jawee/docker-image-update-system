@@ -36,6 +36,7 @@ const DockerImageDetails = () => {
   const handleDelete = () => {
     const service: DockerImageService = new DockerImageService();
     const deleteDockerImage = async () => {
+      debugger;
       await service.deleteDockerImage(dockerImage.id);
       history.push("/");
     };
