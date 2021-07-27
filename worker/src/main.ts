@@ -3,7 +3,7 @@ console.log("Starting worker");
 const worker = new Worker();
 setInterval(async () => {
   console.log("Running probably");
-  worker.start();
+  worker.run();
 }, 3000);
 
 
