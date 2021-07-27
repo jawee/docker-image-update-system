@@ -20,18 +20,20 @@ export class Worker {
   public async run() {
     const images = await this.apiClient.getActiveDockerImages(); 
     const imagesToBeUpdated = await this.imagesToBeUpdated(images);
-    console.log(`imagesToBeUpdated: ${imagesToBeUpdated}`);
   }
 
   public async imagesToBeUpdated(images: DockerImage[]): Promise<DockerImage[]> {
     return new Promise<DockerImage[]>(async (resolve, _) => {
       const list: DockerImage[] = [];
       for(const image of images) {
-        console.log(`handling image: ${image.name} ${image.repository}`);
         const repoClient = this.clients[image.repository];
         const res = await repoClient.getLastUpdatedForTag(image.user, image.name, image.tag);
-        console.log(`Res from client: ${res}`);
-        list.push(image);
+        const resultDate = new Date(res);
+        const currentDate = new Date(image.image_last_updated);
+        if(resultDate > currentDate) {
+          console.log(`${resultDate} > ${currentDate}`);
+          list.push(image);
+        }
       }
       resolve(list);
     });
