@@ -3,7 +3,7 @@ import { DockerHubClient } from "./repository-clients/dockerhub-client";
 import { IRepositoryClient } from "./repository-clients/irepositoryclient";
 import { APIClient } from "./internal-client";
 import { DockerImage } from "./models/docker-image";
-import axios from "axios";
+import { DiscordClient } from "./discord-client";
 
 interface IClientHash {
   [name: string]: IRepositoryClient;
@@ -26,19 +26,9 @@ export class Worker {
   }
 
   private async notifyDiscord(images: DockerImage[]) {
-    const url = process.env.DISCORD_URL; 
-    if(typeof url !== "string") {
-      console.log("DISCORD_URL is not set in env file. Returning without sending anything to discord.");
-      return;
-    }
-    for(const image of images) {
-        const obj = {
-        content: `New image found for ${image.user}/${image.name}:${image.tag} on ${image.repository}`, 
-        username: "DIUS",
-      };
-      axios.post(url, obj);
-    }
-  }
+    const client = new DiscordClient();
+    client.notifyDiscord(images);
+ }
 
   private async updateImages(images: DockerImage[]) {
     for(const image of images) {
