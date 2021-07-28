@@ -41,7 +41,9 @@ export class Worker {
   }
 
   private async updateImages(images: DockerImage[]) {
-
+    for(const image of images) {
+      await this.apiClient.updateDockerImage(image);
+    }
   }
 
   private async imagesToBeUpdated(images: DockerImage[]): Promise<DockerImage[]> {
