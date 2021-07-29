@@ -1,6 +1,6 @@
 sh script:'''
     echo "Building"
-    cd ./api/src
+    cd ./api
     npm install
     npm run build
     echo "Done building"
