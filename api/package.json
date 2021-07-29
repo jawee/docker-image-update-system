@@ -8,7 +8,7 @@
       "preserve": "npm run build",
       "serve": "cross-env NODE_ENV=development concurrently \"tsc --watch\" \"nodemon -q build/main.js\"",
       "prestart": "npm run build",
-      "start": "ts-node main.ts",
+      "start": "ts-node src/main.ts",
       "test": "echo \"Error: no test specified\" && exit 1"
    },
    "author": "",

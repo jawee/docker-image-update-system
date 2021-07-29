@@ -5,17 +5,17 @@
    "logging": false,
    "autoLoadEntities": true,
    "entities": [
-      "entities/**/*.ts"
+      "src/entities/**/*.ts"
    ],
    "migrations": [
-      "migration/**/*.ts"
+      "src/migration/**/*.ts"
    ],
    "subscribers": [
-      "subscriber/**/*.ts"
+      "src/subscriber/**/*.ts"
    ],
    "cli": {
-      "entitiesDir": "entities",
-      "migrationsDir": "migration",
-      "subscribersDir": "subscriber"
+      "entitiesDir": "src/entities",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
    }
 }
