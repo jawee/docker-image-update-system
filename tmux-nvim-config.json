@@ -8,7 +8,7 @@
     },
     {
       "name": "BE-run",
-      "command": "cd api/src && npm run start"
+      "command": "cd api && npm run start"
     },
     {
       "name": "FE-vim",
