@@ -6,7 +6,7 @@ export class Token {
   id: number;
 
   @Column()
-  user_id: string;
+  client_id: string;
 
   @Column()
   redirect_uri: string;
