@@ -1,0 +1,30 @@
+{
+  "path": "/projects/docker-image-update-system/",
+  "name": "n-dius",
+  "windows": [
+    {
+      "name": "BE-vim",
+      "command": "cd api && nvim ."
+    },
+    {
+      "name": "BE-run",
+      "command": "cd api && npm run start"
+    },
+    {
+      "name": "FE-vim",
+      "command": "cd fe && nvim ."
+    },
+    {
+      "name": "FE-run",
+      "command": "cd fe && npm run start"
+    },
+    {
+      "name": "WRK-vim",
+      "command": "cd worker && nvim ."
+    },
+    {
+      "name": "WRK-run",
+      "command": "cd worker"
+    }
+  ]
+}
